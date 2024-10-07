@@ -207,5 +207,28 @@
 
         <!--===== MAIN JS =====-->
         <script src="assets/js/main.js"></script>
+
+        <script>
+  // Function to send hover events to Segment
+  function trackMouseHover(event) {
+    // Track hover event in Segment
+    analytics.track('Mouse Hover', {
+      element: event.target.tagName,
+      id: event.target.id,
+      class: event.target.className,
+      page: window.location.pathname,
+      time: new Date().toISOString()
+    });
+  }
+
+  // Select all elements you want to track (e.g., buttons)
+  var hoverElements = document.querySelectorAll('.track-hover');
+
+  // Attach hover event listeners to the elements
+  hoverElements.forEach(function(element) {
+    element.addEventListener('mouseenter', trackMouseHover);
+  });
+</script>
+
     </body>
 </html>
